@@ -1,0 +1,39 @@
+<?php
+// Creando el array
+$data = [
+    '1',      // string
+    '2.5',    // string
+    'true',   // string
+    5,        // int
+    10.5,     // float
+];
+
+// array original
+echo "Array original:\n";
+print_r($data);
+
+// Conversión de datos: de string a int, de string a float, de string a booleano
+$convertedData = [];
+
+foreach ($data as $item) {
+    if (is_string($item)) {
+        // Convertir de string a int
+        if (is_numeric($item)) {
+            $convertedData[] = (int)$item;
+        } else {
+            // Convertir de string a booleano
+            $convertedData[] = filter_var($item, FILTER_VALIDATE_BOOLEAN);
+        }
+    } elseif (is_int($item)) {
+        // Convertir de int a float
+        $convertedData[] = (float)$item;
+    } elseif (is_float($item)) {
+        // Convertir de float a int
+        $convertedData[] = (int)$item;
+    }
+}
+
+// Mostrar los datos convertidos
+echo "\nArray con conversiones de datos:\n";
+print_r($convertedData);
+?>
